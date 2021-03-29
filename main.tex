@@ -1,0 +1,226 @@
+% \documentclass[a4paper,11pt,english]{scrbook}
+% \documentclass[11pt]{book}
+\documentclass[12pt,twoside]{report}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+% \usepackage{mynotation}
+% \documentclass[runningheads]{llncs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                 PREAMBLE                                      %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%% packages for language and rich formatting %%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	
+\usepackage{float}
+\usepackage{bm}
+% \usepackage{mathptmx}  % choose font typeface 
+\DeclareUnicodeCharacter{B0}{\textdegree}
+
+\usepackage{nomencl} % nomenclature
+\makenomenclature
+\usepackage{appendix} % appendix 
+\usepackage[nottoc,notlot,notlof]{tocbibind}  % show bib
+
+\usepackage[section]{placeins} % prevent floats out of section  
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{mathrsfs}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+%\addtolength{\hoffset}{1cm}
+\addtolength{\voffset}{-.5cm}
+\addtolength{\textheight}{1cm}
+%\addtolength{\textwidth}{0.5cm}
+% \usepackage{indentfirst} % set indent for first paragraph
+\setlength{\parindent}{1.5em} 
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref} 
+\usepackage{array,xcolor,colortbl}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{comment}
+\usepackage{dsfont}
+\usepackage{authblk}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}  % change row spacing
+\usepackage{minitoc, footmisc} %  allow mini-tables-of-contents at the beginning of every chapter
+\usepackage{helvet, courier, type1cm}
+\usepackage{listings} 
+\lstset{breaklines}                  
+\usepackage[small]{caption}
+\usepackage{glossaries}
+\usepackage{graphicx}
+\graphicspath{{images/}} 
+\usepackage{color}
+\definecolor{blackgreen}{rgb}{0,0.4,0}
+
+% Modification of header and footnote
+\usepackage{fancyhdr} 
+\pagestyle{fancy} \fancyhf{}
+\fancyhead[RE]{\nouppercase{\textit{\leftmark}}} 	% Right even
+\fancyhead[LO]{\nouppercase{\textit{\rightmark}}} 	% Left odd
+\fancyhead[LE]{\textbf{\thepage}}			% Left even
+\fancyhead[RO]{\textbf{\thepage}}	 		% Left even
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{50pt}
+\setlength{\oddsidemargin}{30pt}  	% Marge gauche sur pages impaires
+\setlength{\evensidemargin}{0pt} 	% Marge gauche sur pages paires
+
+% to validate 
+% \renewcommand{\topfraction}{0.95}
+% \setcounter{topnumber}{2}
+% \renewcommand{\textfraction}{0.05}
+% \renewcommand{\floatpagefraction}{0.7}
+
+% manage code formatting 
+\lstset{language=Matlab} % Enables the style "Matlab"
+\lstset{language=C, % style for C
+basicstyle=\ttfamily\scriptsize,    % the size of character policy pour
+keywordstyle=\color{red}\textbf,	% the style of language keywords
+commentstyle=\color{blue},		    % the style of comments 
+numbers=left,                   	% where to put line number 
+numberstyle=\ttfamily\scriptsize, 	% the line number style 
+numberblanklines=false,			
+captionpos=t,                   % put the legend below
+frame=TB,	                    % 
+showspaces=false,               % show the space
+showstringspaces=false,         % show the character chains 
+showtabs=false,                 % show the tables in character chain
+tabsize=4,	                    % table size
+moredelim=[s][\color{blackgreen}]{'}{'},
+moredelim=[s][\color{blackgreen}]{"}{"},
+}
+
+%%%%%%%%%%%%%%%&& Definition of commands and personal shortcuts %%%%%%%%%%%%%%%&
+% authors and colors
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{HL}{rgb}{0.95,1,0.95}
+\definecolor{DarkBlue}{rgb}{0.0, 0.5, 0.8}
+
+% Latin phrases
+\newcommand{\defacto}{de facto}
+\newcommand{\etal}{et al.}
+\newcommand{\eg}{e.g.}
+\newcommand{\ie}{i.e.}
+
+% commands for writing formatting
+\newcommand{\Eq}[1]{Eq.(\ref{#1})}
+\newcommand{\Eqs}[2]{Eqs.(\ref{#1})--(\ref{#2})}
+\newcommand{\Equation}[1]{Équation~(\ref{#1})}
+\newcommand{\Problem}[1]{Problème~(\ref{#1})}
+\newcommand{\Algo}[1]{Algorithme~(\ref{#1})}
+\newcommand{\Algos}[2]{Algorithmes~(\ref{#1})--(\ref{#2})}
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1}~\&~\ref{#2}}  
+\newcommand{\Figure}[1]{Figure~\ref{#1}}   
+\newcommand{\Sec}[1]{Section~\ref{#1}}
+\newcommand{\Chapter}[1]{Chapitre~\ref{#1}}
+\newcommand{\Chapters}[2]{Chapitres~\ref{#1}--\ref{#2}}
+\newcommand{\Appendix}[1]{Annexe~\ref{#1}}
+\newcommand{\Sections}[2]{Sections~\ref{#1}--\ref{#2}}
+\newcommand{\Table}[1]{Table~(\ref{#1})}
+\newcommand{\parsection}[1]{\noindent\textbf{#1}}
+\newcommand{\eqdef}{\stackrel{\text{\tiny def}}{=}}
+\hyphenation{ap-prox-i-mated}
+\newcommand{\ssp}[1]{\,{#1}\,}
+\newcommand{\nsp}[1]{{#1}}
+
+% defined nouns abbreviations
+
+% variable abbreviations
+\newcommand{\cam}{C} % camera center 
+\newcommand{\reals}{\mathbb{R}}                     % real number 
+\newcommand{\Pthree}{\mathcal{P}}                   % 3D point 
+\newcommand{\Ptwo}{\mathcal{p}}                     % 2D point 
+\newcommand{\Pt}{\mathbf{P}}                        % 3D point coordinate
+\newcommand{\pt}{\mathbf{p}}                        % 2D point coordinate 
+\newcommand{\R}[1]{\ensuremath{\mathbb{R}^{#1}}}	% R for real
+\newcommand{\Id}[1]{\ensuremath{\tens{I}_{#1}}}		% Identity matrix
+\newcommand{\HM}{\ensuremath{\tens{H}}}				% homogeneous matrix
+\newcommand{\tsl}{\mathbf{t}}            			% translation vector
+\newcommand{\Rot}{\mathbf{R}}       			    % rotation matrix
+\newcommand{\qua}{\mathbf{q}}       			    % quaternion vector 
+\renewcommand{\skew}[1]{\ensuremath{\widehat{#1}}}	% skew-matrix related to a vector
+\newcommand{\ve}[1][u]{\ensuremath{\vect{#1}}}		% vector in space
+\newcommand{\force}{\ensuremath{\vect{f}}}			% force
+
+% operation abbreviations
+\DeclarePairedDelimiterX{\abs}[1]{|}{|}{#1}
+\DeclarePairedDelimiterX{\card}[1]{|}{|}{#1}
+% \DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                             BEGIN OF DOCUMENT                                 %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% ----------------- cover, abstract and others -------------------%
+% \frontmatter
+\setcounter{tocdepth}{3} 
+\setcounter{secnumdepth}{3}
+
+% title page
+\begin{titlepage} 
+    \input{thesis_cover} 
+\end{titlepage}
+\newpage
+\thispagestyle{empty}
+\null
+
+% Abstract and acknowledgement
+\input{abstract}
+\newpage
+\input{resume}
+\input{acknowledgments}
+
+% table of contents
+\tableofcontents
+
+% List of figures
+\listoffigures
+% \addcontentsline{toc}{chapter}{\listfigurename}
+
+% List of tables
+\listoftables
+% \addcontentsline{toc}{chapter}{\listtablename}
+
+% Nomenclature
+% \nomenclature{$T$}{The total time}%
+\printnomenclature
+
+%-------------------------  main part ----------------------------%
+% \mainmatter
+
+% introduction 
+\input{introduction}
+
+% chapter for topic 1
+\input{topic_1}
+
+% chapter for topic 2
+\input{topic_2}
+
+% chapter for topic 3
+\input{topic_3}
+
+% chapter for conclusion and perspectives 
+\input{discussion}
+
+%---------------------------  appendix  ---------------------------%
+
+%-------------------------  Code samples -------------------------%
+
+%-------------------------  Bibliography  ------------------------%
+\bibliographystyle{splncs04}
+\bibliography{egbib}
+
+% \addcontentsline{toc}{part}{reference} 
+\end{document}
+
+\clearpage
